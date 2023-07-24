@@ -4,6 +4,8 @@
  */
 package Exercise20;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Natalia
@@ -12,6 +14,8 @@ public class Main {
     
     public static void main(String[] args) {
         
+        Scanner sc = new Scanner (System.in);
+        
         int manufactYear = 0;
         double carPrice = 0;
         
@@ -19,11 +23,14 @@ public class Main {
         
         while (repeat == true) {
             
+            System.out.println("Type the vehicle's manufacturing year: ");
+            manufactYear = sc.nextInt();
             
-            
+            System.out.println("Type the vehicle's price: ");
+            carPrice = sc.nextDouble();
         }
            
-        
+       sc.close(); 
     }
     
 }
