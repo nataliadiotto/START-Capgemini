@@ -16,4 +16,8 @@ public class Salesperson  extends Employee {
     public Salesperson() {
         super();
     }
+    
+    public double calculateSalary() {
+        return super.getSalary() + (this.itemComission * totalItensSold);
+    }
 }
