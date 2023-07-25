@@ -14,10 +14,28 @@ public class Salesperson  extends Employee {
     private double itemComission;
     
     public Salesperson() {
-        super();
+        super(); //quero que ele tenha tudo que um employee tem
     }
     
     public double calculateSalary() {
         return super.getSalary() + (this.itemComission * totalItensSold);
     }
+
+    public int getTotalItensSold() {
+        return totalItensSold;
+    }
+
+    public void setTotalItensSold(int totalItensSold) {
+        this.totalItensSold = totalItensSold;
+    }
+
+    public double getItemComission() {
+        return itemComission;
+    }
+
+    public void setItemComission(double itemComission) {
+        this.itemComission = itemComission;
+    }
+    
+    
 }

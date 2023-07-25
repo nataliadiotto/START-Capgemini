@@ -8,6 +8,6 @@ package Heranca;
  *
  * @author Natalia
  */
-public class Driver {
+public class Driver extends Employee {
     
 }
