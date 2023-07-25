@@ -8,6 +8,12 @@ package Heranca;
  *
  * @author Natalia
  */
-public class Salesperson {
+public class Salesperson  extends Employee {
     
+    private int totalItensSold;
+    private double itemComission;
+    
+    public Salesperson() {
+        super();
+    }
 }

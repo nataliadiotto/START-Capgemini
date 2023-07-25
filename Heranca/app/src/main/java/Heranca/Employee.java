@@ -10,4 +10,5 @@ package Heranca;
  */
 public class Employee {
     
+    
 }
