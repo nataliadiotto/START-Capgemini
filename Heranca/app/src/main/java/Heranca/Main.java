@@ -29,6 +29,11 @@ public class Main {
         
         System.out.println("The salesperson salary is: $" + s.calculateSalary());
         
+        Driver d = new Driver();
+        d.setName("Peter");
+        d.setBirthDate(new Date());
+        d.setSalary(1300);
+        
         sc.close();
     
     }
