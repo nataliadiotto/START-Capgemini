@@ -18,18 +18,36 @@ public class Main {
         
         int manufactYear = 0;
         double carPrice = 0;
+        int totalCars = 0;
+        int totalCars2000 = 0;
+        double discountPercentage = 0;  
+        char repeat = 'Y';
         
-        boolean repeat = true;
-        
-        while (repeat == true) {
+        while (repeat == 'Y') {
             
-            System.out.println("Type the vehicle's manufacturing year: ");
+            System.out.print("Type the vehicle's manufacturing year: ");
             manufactYear = sc.nextInt();
             
-            System.out.println("Type the vehicle's price: ");
+            System.out.print("Type the vehicle's price: ");
             carPrice = sc.nextDouble();
+                      
+            if (manufactYear <= 2000) {
+                discountPercentage = 0.12;
+                totalCars2000 ++;
+            } else  {
+                discountPercentage =  0.007;
+            }
+            totalCars ++;
+            
+            System.out.println("The discount is: $" + carPrice * discountPercentage);
+            
+            System.out.println("\nDo you want to continue? (Y/N)");
+            repeat = sc.next().charAt(0);
+                        
         }
-           
+        
+         System.out.println("\nTotal cars: " + totalCars + "\nTotal cars until 2000: " + totalCars2000);
+         
        sc.close(); 
     }
     
