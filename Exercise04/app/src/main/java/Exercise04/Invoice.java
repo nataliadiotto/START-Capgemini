@@ -54,5 +54,8 @@ public class Invoice {
         this.unityPrice = unityPrice;
     }
     
-    
+    public double getInvoiceAmount(double unityPrice, int quantity) {
+        return unityPrice * quantity;
+    }
 }
+
