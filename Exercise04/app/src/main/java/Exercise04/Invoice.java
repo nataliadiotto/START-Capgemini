@@ -13,13 +13,13 @@ public class Invoice {
     private int itemNumber;
     private String itemDescription;
     private int quantity;
-    private double unityPrice;
+    private double unitPrice;
 
-    public Invoice(int itemNumber, String itemDescription, int quantity, double unityPrice) {
+    public Invoice(int itemNumber, String itemDescription, int quantity, double unitPrice) {
         this.itemNumber = itemNumber;
         this.itemDescription = itemDescription;
         this.quantity = quantity;
-        this.unityPrice = unityPrice;
+        this.unitPrice = unitPrice;
     }
 
     public int getItemNumber() {
@@ -39,6 +39,9 @@ public class Invoice {
     }
 
     public int getQuantity() {
+        if (quantity < 0) {
+            quantity = 0;
+        }
         return quantity;
     }
 
@@ -46,16 +49,19 @@ public class Invoice {
         this.quantity = quantity;
     }
 
-    public double getUnityPrice() {
-        return unityPrice;
+    public double getUnitPrice() {
+        if (unitPrice < 0) {
+            unitPrice = 0;
+        }
+        return unitPrice;
     }
 
-    public void setUnityPrice(double unityPrice) {
-        this.unityPrice = unityPrice;
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
     
-    public double getInvoiceAmount(double unityPrice, int quantity) {
-        return unityPrice * quantity;
+    public double getInvoiceAmount(double unitPrice, int quantity) {
+        return unitPrice * quantity;
     }
 }
 
