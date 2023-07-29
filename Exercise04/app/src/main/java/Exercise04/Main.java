@@ -14,10 +14,7 @@ public class Main {
     public static void main(String[] args) {
        
         Scanner sc = new Scanner(System.in);
-        
-        char repeat = 'Y';
-      
-        while (repeat == 'Y') 
+       
             System.out.print("Insert the item number: ");
             int itemNumber = sc.nextInt();
 
@@ -33,9 +30,6 @@ public class Main {
             Invoice invoice = new Invoice(itemNumber, itemDescription, quantity, unitPrice);
 
             System.out.println("The total price is: $" + invoice.getInvoiceAmount(unitPrice, quantity));
-
-            System.out.println("\nDo you want to create another invoice?");
-            repeat = sc.next().charAt(0);
            
         
     }
