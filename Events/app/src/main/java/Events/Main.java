@@ -6,8 +6,13 @@ package Events;
 
 /**
  *
- * @author Natalia
+ * @author Natália Diotto
  */
 public class Main {
+    
+    public static void main(String[] args) {
+        
+        
+    }
     
 }
