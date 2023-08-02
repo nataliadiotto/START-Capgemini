@@ -27,6 +27,14 @@ public class ConnectionFactory {
         }
     }
     
-    
+    public static closeConnection (Connection connection) {
+        try {
+            if (connection != null) {
+                connnection.close();
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException ("Error closing the connection to the database.", ex);     
+        }
+    }
     
 }
