@@ -5,6 +5,7 @@
 package controller;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -18,6 +19,27 @@ import utilities.ConnectionFactory;
 public class TaskController {
     
     public void save (Task  task ){
+        
+        String sql = "INSERT INTO tasks (projectId, name, description, completed, notes, deadline, createdAt, updatedAt ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, task.getProjectId());
+            statement.setString(2, task.getName());
+            statement.setString(3, task.getDescription());
+            statement.setBoolean(4, task.isIsComplete());
+            statement.setString(5, task.getNotes());
+            statement.setDate(6, new Date(task.getDeadline().getTime())); //converter data pois, apesar de terem o mesmo nome, são de pacotes diferentes (java.util e java.sql)
+            statement.setDate(7, new Date(task.getCreatedAt().getTime()));
+            statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
+            
+        } catch (Exception e) {
+            
+        }
         
     }
     

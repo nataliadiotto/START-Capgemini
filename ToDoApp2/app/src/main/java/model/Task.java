@@ -13,7 +13,7 @@ import java.util.Date;
 public class Task {
     
     private int id;
-    private int idProject;
+    private int projectId;
     private String name;
     private String description;
     private String notes;
@@ -24,7 +24,7 @@ public class Task {
 
     public Task(int id, int idProject, String name, String description, String notes, boolean isComplete, Date deadline, Date createdAt, Date updatedAt) {
         this.id = id;
-        this.idProject = idProject;
+        this.projectId = idProject;
         this.name = name;
         this.description = description;
         this.notes = notes;
@@ -42,12 +42,12 @@ public class Task {
         this.id = id;
     }
 
-    public int getIdProject() {
-        return idProject;
+    public int getProjectId() {
+        return projectId;
     }
 
-    public void setIdProject(int idProject) {
-        this.idProject = idProject;
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
     public String getName() {
@@ -108,7 +108,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" + "id=" + id + ", idProject=" + idProject + ", name=" + name + ", description=" + description + ", notes=" + notes + ", isComplete=" + isComplete + ", deadline=" + deadline + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
+        return "Task{" + "id=" + id + ", idProject=" + projectId + ", name=" + name + ", description=" + description + ", notes=" + notes + ", isComplete=" + isComplete + ", deadline=" + deadline + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
     }
     
     
