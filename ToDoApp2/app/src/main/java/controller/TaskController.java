@@ -36,9 +36,11 @@ public class TaskController {
             statement.setDate(6, new Date(task.getDeadline().getTime())); //converter data pois, apesar de terem o mesmo nome, são de pacotes diferentes (java.util e java.sql)
             statement.setDate(7, new Date(task.getCreatedAt().getTime()));
             statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
-            
-        } catch (Exception e) {
-            
+            statement.execute();
+        } catch (Exception ex) {
+            throw new RuntimeException("Error saving task." + ex.getMessage(), ex);
+        } finally {
+            ConnectionFactory.closeConnection(connection);
         }
         
     }

@@ -22,9 +22,9 @@ public class Task {
     private Date createdAt;
     private Date updatedAt;
 
-    public Task(int id, int idProject, String name, String description, String notes, boolean isComplete, Date deadline, Date createdAt, Date updatedAt) {
+    public Task(int id, int projectID, String name, String description, String notes, boolean isComplete, Date deadline, Date createdAt, Date updatedAt) {
         this.id = id;
-        this.projectId = idProject;
+        this.projectId = projectID;
         this.name = name;
         this.description = description;
         this.notes = notes;
@@ -32,6 +32,10 @@ public class Task {
         this.deadline = deadline;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+    
+    public Task(){
+        this.createdAt = new Date(); //quando criar o objeto, a data de criação será gerada
     }
 
     public int getId() {
@@ -108,7 +112,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" + "id=" + id + ", idProject=" + projectId + ", name=" + name + ", description=" + description + ", notes=" + notes + ", isComplete=" + isComplete + ", deadline=" + deadline + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
+        return "Task{" + "id=" + id + ", projectId=" + projectId + ", name=" + name + ", description=" + description + ", notes=" + notes + ", isComplete=" + isComplete + ", deadline=" + deadline + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
     }
     
     
