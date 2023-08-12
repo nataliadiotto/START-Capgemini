@@ -17,7 +17,9 @@ public class Main {
         
         Connection c = ConnectionFactory.getConnection();
         
-        ConnectionFactory.closeConnection();
+        
+        
+        ConnectionFactory.closeConnection(c);
         
     }
     
