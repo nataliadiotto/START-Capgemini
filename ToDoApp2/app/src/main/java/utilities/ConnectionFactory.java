@@ -6,6 +6,7 @@ package utilities;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -32,6 +33,21 @@ public class ConnectionFactory {
             if (connection != null) {
                 connection.close();
             }
+        } catch (Exception ex) {
+            throw new RuntimeException ("Error closing the connection to the database.", ex);     
+        }
+    }
+    
+    public static void closeConnection (Connection connection, PreparedStatement statement) { //metodo com a mesma assinatura do anterior mas parametros diferentes
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+            
+            if (statement != null) {
+                statement.close();
+            }
+            
         } catch (Exception ex) {
             throw new RuntimeException ("Error closing the connection to the database.", ex);     
         }

@@ -7,7 +7,6 @@ package controller;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 import model.Task;
 import utilities.ConnectionFactory;
@@ -40,7 +39,7 @@ public class TaskController {
         } catch (Exception ex) {
             throw new RuntimeException("Error saving task." + ex.getMessage(), ex);
         } finally {
-            ConnectionFactory.closeConnection(connection);
+            ConnectionFactory.closeConnection(connection, statement);
         }
         
     }
@@ -49,23 +48,23 @@ public class TaskController {
         
     }
     
-    public void removeById (int taskId) throws SQLException {
+    public void removeById (int taskId) {
         String sql = "DELETE FROM tasks WHERE id = ?";
         
-        Connection conn = null;
+        Connection connection = null;
         PreparedStatement statement = null;
         
         try {
             
-            conn = ConnectionFactory.getConnection(); //criei a conexão
-            statement = conn.prepareStatement(sql); //objeto que ajuda a preparar o comando sql que será executado no banco
+            connection = ConnectionFactory.getConnection(); //criei a conexão
+            statement = connection.prepareStatement(sql); //objeto que ajuda a preparar o comando sql que será executado no banco
             statement.setInt(1, taskId); //quero setar um valor naquele sql: substituir primeiro parametro (?) pelo valor da tarefa 
             statement.execute();
             
-        }  catch (SQLException e) {
-            throw new SQLException("Error deleting task.");
+        }  catch (Exception ex) {
+            throw new RuntimeException("Error deleting task." + ex.getMessage(), ex);
         }  finally {
-            ConnectionFactory.closeConnection(conn);
+            ConnectionFactory.closeConnection(connection, statement);
             
         }
     }
