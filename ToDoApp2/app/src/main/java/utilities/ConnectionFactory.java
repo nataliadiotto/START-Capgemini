@@ -27,10 +27,10 @@ public class ConnectionFactory {
         }
     }
     
-    public static closeConnection (Connection connection) {
+    public static void closeConnection (Connection connection) {
         try {
             if (connection != null) {
-                connnection.close();
+                connection.close();
             }
         } catch (Exception ex) {
             throw new RuntimeException ("Error closing the connection to the database.", ex);     
