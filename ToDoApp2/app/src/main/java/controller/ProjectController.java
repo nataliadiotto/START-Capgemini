@@ -7,8 +7,11 @@ package controller;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import model.Project;
+import model.Task;
 import utilities.ConnectionFactory;
 
 /**
@@ -88,10 +91,48 @@ public class ProjectController {
         } finally {
             ConnectionFactory.closeConnection(connection, statement);
         }
-        
     }
     
     public List<Project> getAll(int projectId) { //search all projects using projectId
+        String sql = "SELECT * FROM projects WHERE id = ?";
         
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null; //guarda a resposta do select no banco de dados
+        
+        //Lista de projects que será devolvida quando a chamada do método acontecer
+        List<Project> projects = new ArrayList<>();
+        
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            
+            //setando o valor que corresponde ao filtro
+            statement.setInt(1, projectId);
+            
+             //Valor retornado pela execução da query
+            resultSet = statement.executeQuery();
+            
+            while (resultSet.next()) {
+                
+                Project project = new Project();
+                
+                //Setar todos os campos
+                project.setId(resultSet.getInt("id"));
+                project.setName(resultSet.getString("name"));
+                project.setDescription(resultSet.getString("description"));
+                project.setCreatedAt(resultSet.getDate("createdAt"));
+                project.setUpdatedAt(resultSet.getDate("updatedAt"));
+                
+                projects.add(project);
+            }
+            
+        } catch (Exception ex) {
+            throw new RuntimeException("Error searching for projects." + ex.getMessage() , ex);
+        } finally {
+            ConnectionFactory.closeConnection(connection, statement, resultSet);
+        }
+       
+        return projects;
     }
 }
