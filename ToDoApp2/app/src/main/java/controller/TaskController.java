@@ -101,6 +101,7 @@ public class TaskController {
         PreparedStatement statement = null;
         ResultSet resultSet = null; //guarda a resposta do select no banco de dados
         
+        //Lista de tasks que será devolvida quando a chamada do método acontecer
         List<Task> tasks = new ArrayList<>();
         
         try {
@@ -124,7 +125,7 @@ public class TaskController {
                 task.setCreatedAt(resultSet.getDate("createdAt"));
                 task.setUpdatedAt(resultSet.getDate("updatedAt"));
                 
-                tasks.add(task)
+                tasks.add(task);
                 
             }
             
