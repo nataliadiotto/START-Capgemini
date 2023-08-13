@@ -4,7 +4,6 @@
  */
 package controller;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -54,8 +53,12 @@ public class TaskController {
         PreparedStatement statement = null;
         
         try {
+            //Estabelecendo a conexão com o banco de dados
             connection = ConnectionFactory.getConnection();
+            //preparando a query
             statement = connection.prepareStatement(sql);
+            
+            //setando os valores do statement
             statement.setInt(1, task.getProjectId());
             statement.setString(2, task.getName());
             statement.setString(3, task.getDescription());
@@ -64,8 +67,11 @@ public class TaskController {
             statement.setDate(6, new Date(task.getDeadline().getTime()));
             statement.setDate(7, new Date(task.getCreatedAt().getTime()));
             statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
+            statement.setInt(9, task.getId());
+            
+            //executando a query
             statement.execute();
-        } catch (Exception ex) {
+        } catch (Exception ex) {S
             throw new RuntimeException("Error updating task." + ex.getMessage(), ex);
         } finally {
             ConnectionFactory.closeConnection(connection, statement);
@@ -79,9 +85,12 @@ public class TaskController {
         PreparedStatement statement = null;
         
         try {
-            
+             //Estabelecendo a conexão com o banco de dados
             connection = ConnectionFactory.getConnection(); //criei a conexão
+            //preparando a query
             statement = connection.prepareStatement(sql); //objeto que ajuda a preparar o comando sql que será executado no banco
+           
+            //setando os valores do statement
             statement.setInt(1, taskId); //quero setar um valor naquele sql: substituir primeiro parametro (?) pelo valor da tarefa 
             statement.execute();
             
@@ -107,10 +116,14 @@ public class TaskController {
         try {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
+            
+            //setando o valor que corresponde ao filtro
             statement.setInt(1, projectId);
             
+            //Valor retornado pela execução da query
             resultSet = statement.executeQuery(); //vai devolver o valor de resposta do banco de dados
             
+           //Enquanto houverem valores a serem percorridos no meu result set
             while (resultSet.next()) {
                 
                 Task task = new Task();
@@ -130,13 +143,13 @@ public class TaskController {
             }
             
         } catch (Exception ex) {
-            throw new RuntimeException("Error filtering tasks." + ex.getMessage(), ex);
+            throw new RuntimeException("Error searching for tasks." + ex.getMessage(), ex);
         } finally {
-            ConnectionFactory.closeConnection(connection, statement);
+            ConnectionFactory.closeConnection(connection, statement, resultSet);
         }
         
-        
-        return null;
+        //Lista de tarefas que foi criada e carregada do banco de dados
+        return tasks;
                 
     }
     
