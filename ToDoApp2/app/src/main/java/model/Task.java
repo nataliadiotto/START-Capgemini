@@ -22,9 +22,9 @@ public class Task {
     private Date createdAt;
     private Date updatedAt;
 
-    public Task(int id, int projectID, String name, String description, String notes, boolean isComplete, Date deadline, Date createdAt, Date updatedAt) {
+    public Task(int id, int projectId, String name, String description, String notes, boolean isComplete, Date deadline, Date createdAt, Date updatedAt) {
         this.id = id;
-        this.projectId = projectID;
+        this.projectId = projectId;
         this.name = name;
         this.description = description;
         this.notes = notes;

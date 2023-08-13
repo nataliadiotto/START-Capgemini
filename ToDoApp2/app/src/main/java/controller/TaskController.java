@@ -4,9 +4,12 @@
  */
 package controller;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import model.Task;
 import utilities.ConnectionFactory;
@@ -90,8 +93,50 @@ public class TaskController {
         }
     }
     
-    public List<Task> getAll(int idProject) { //search all tasks using idProject
+    public List<Task> getAll(int projectId) { //search all tasks using projectId
+        
+        String sql = "SELECT * FROM tasks WHERE projectId = ?";
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null; //guarda a resposta do select no banco de dados
+        
+        List<Task> tasks = new ArrayList<>();
+        
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, projectId);
+            
+            resultSet = statement.executeQuery(); //vai devolver o valor de resposta do banco de dados
+            
+            while (resultSet.next()) {
+                
+                Task task = new Task();
+                //setar todos os campos
+                task.setId(resultSet.getInt("id")); //pegar o resultSet na coluna id 
+                task.setProjectId(resultSet.getInt("projectId"));
+                task.setName(resultSet.getString("name"));
+                task.setDescription(resultSet.getString("description"));
+                task.setIsComplete(resultSet.getBoolean("completed"));
+                task.setNotes(resultSet.getString("notes"));
+                task.setDeadline(resultSet.getDate("deadline"));
+                task.setCreatedAt(resultSet.getDate("createdAt"));
+                task.setUpdatedAt(resultSet.getDate("updatedAt"));
+                
+                tasks.add(task)
+                
+            }
+            
+        } catch (Exception ex) {
+            throw new RuntimeException("Error filtering tasks." + ex.getMessage(), ex);
+        } finally {
+            ConnectionFactory.closeConnection(connection, statement);
+        }
+        
+        
         return null;
+                
     }
     
 }
