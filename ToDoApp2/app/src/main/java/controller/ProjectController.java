@@ -5,6 +5,7 @@
 package controller;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.List;
 import model.Project;
@@ -27,9 +28,15 @@ public class ProjectController {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
             
+            //Setando valores do statement
+            statement.setString(1, project.getName());
+            statement.setString(2, project.getDescription());
+            statement.setDate(3, new Date(project.getCreatedAt().getTime()));
+            statement.setDate(4, new Date(project.getUpdatedAt().getTime()));
+            statement.execute();
             
         } catch (Exception ex) {
-            
+            throw new RuntimeException("Error saving project." + ex.getMessage(), ex);
         } finally {
             ConnectionFactory.closeConnection(connection, statement);
         }
