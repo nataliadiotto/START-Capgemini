@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Project;
-import model.Task;
 import utilities.ConnectionFactory;
 
 /**
@@ -94,7 +93,7 @@ public class ProjectController {
     }
     
     public List<Project> getAll(int projectId) { //search all projects using projectId
-        String sql = "SELECT * FROM projects WHERE id = ?";
+        String sql = "SELECT * FROM projects";
         
         Connection connection = null;
         PreparedStatement statement = null;
@@ -106,13 +105,11 @@ public class ProjectController {
         try {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
-            
-            //setando o valor que corresponde ao filtro
-            statement.setInt(1, projectId);
-            
+                       
              //Valor retornado pela execução da query
             resultSet = statement.executeQuery();
             
+            //Enquanto existir dados no banco de dados, faça
             while (resultSet.next()) {
                 
                 Project project = new Project();
@@ -124,6 +121,7 @@ public class ProjectController {
                 project.setCreatedAt(resultSet.getDate("createdAt"));
                 project.setUpdatedAt(resultSet.getDate("updatedAt"));
                 
+                //Adicionar o contato recuperado à lista de contatos
                 projects.add(project);
             }
             
@@ -132,7 +130,6 @@ public class ProjectController {
         } finally {
             ConnectionFactory.closeConnection(connection, statement, resultSet);
         }
-       
         return projects;
     }
 }
