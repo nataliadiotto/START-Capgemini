@@ -33,6 +33,8 @@ public class ProjectController {
             statement.setString(2, project.getDescription());
             statement.setDate(3, new Date(project.getCreatedAt().getTime()));
             statement.setDate(4, new Date(project.getUpdatedAt().getTime()));
+           
+            //Executando query
             statement.execute();
             
         } catch (Exception ex) {
@@ -44,7 +46,28 @@ public class ProjectController {
     }
     
     public void update (Project project) {
+        String sql = "UPDATE projects SET name = ?, description = ?, createdAt = ?, updatedAt = ?  WHERE id = ?";
         
+        Connection connection = null;
+        PreparedStatement statement = null;
+        
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            
+            statement.setString(1, project.getName());
+            statement.setString(2, project.getDescription());
+            statement.setDate(3, new Date(project.getCreatedAt().getTime()));
+            statement.setDate(4, new Date(project.getUpdatedAt().getTime()));
+            statement.setInt(5, project.getId());
+            
+            statement.execute();
+            
+        } catch (Exception ex) {
+            throw new RuntimeException("Error updating project." + ex.getMessage(), ex);
+        } finally {
+           ConnectionFactory.closeConnection(connection, statement);
+        }
     }
     
     public void removeById(int projectId) {
