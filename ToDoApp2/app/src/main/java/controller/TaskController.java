@@ -30,7 +30,7 @@ public class TaskController {
             statement.setInt(1, task.getProjectId());
             statement.setString(2, task.getName());
             statement.setString(3, task.getDescription());
-            statement.setBoolean(4, task.isIsComplete());
+            statement.setBoolean(4, task.isComplete());
             statement.setString(5, task.getNotes());
             statement.setDate(6, new Date(task.getDeadline().getTime())); //converter data pois, apesar de terem o mesmo nome, são de pacotes diferentes (java.util e java.sql)
             statement.setDate(7, new Date(task.getCreatedAt().getTime()));
@@ -45,7 +45,28 @@ public class TaskController {
     }
     
     public void update (Task task) {
+        String sql = "UPDATE tasks SET projectId = ?, name = ?, description = ?, completed = ?, notes = ?, deadline = ?, createdAt = ?, updatedAt = ?  WHERE id = ?"; //id da tarefa usado como filtro do update
+                
+        Connection connection = null;
+        PreparedStatement statement = null;
         
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, task.getProjectId());
+            statement.setString(2, task.getName());
+            statement.setString(3, task.getDescription());
+            statement.setBoolean(4, task.isComplete());
+            statement.setString(5, task.getNotes());
+            statement.setDate(6, new Date(task.getDeadline().getTime()));
+            statement.setDate(7, new Date(task.getCreatedAt().getTime()));
+            statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
+            statement.execute();
+        } catch (Exception ex) {
+            throw new RuntimeException("Error updating task." + ex.getMessage(), ex);
+        } finally {
+            ConnectionFactory.closeConnection(connection, statement);
+        }
     }
     
     public void removeById (int taskId) {
