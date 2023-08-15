@@ -5,7 +5,9 @@
 package ToDoApp2;
 
 import controller.ProjectController;
+import java.util.List;
 import model.Project;
+import org.checkerframework.checker.units.qual.A;
 
 /**
  *
@@ -15,15 +17,30 @@ public class Main {
     
     public static void main(String[] args) {
         
+       /* ProjectController projectController = new ProjectController();
+        
+        Project project = new Project();
+      ;
+        project.setName("Test Project");
+        project.setDescription("Created for testing purposes only.");
+        projectController.save(project);*/
+        
         ProjectController projectController = new ProjectController();
         
         Project project = new Project();
-        project.setName("Test Project");
-        project.setDescription("Created for testing purposes only.");
-        projectController.save(project);
-        
-        project.setName("Updt: Created for testing purposes only.");
+        project.setId(1);
+        project.setName("Updated Test Project");
+        project.setDescription("Updt: Created for testing purposes only");
         projectController.update(project);
+        
+        projectController.removeById(4);
+        
+        
+        List<Project> projects = projectController.getAll(0);
+        System.out.println("Total: " + projects.size());
+        
+        
+        
         
     }
     

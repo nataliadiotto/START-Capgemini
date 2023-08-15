@@ -92,7 +92,7 @@ public class ProjectController {
         }
     }
     
-    public List<Project> getAll(int projectId) { //search all projects using projectId
+    public List<Project> getAll(int id) { //search all projects using projectId
         String sql = "SELECT * FROM projects";
         
         Connection connection = null;
