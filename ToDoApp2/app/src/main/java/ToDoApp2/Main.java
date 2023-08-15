@@ -4,8 +4,8 @@
  */
 package ToDoApp2;
 
-import java.sql.Connection;
-import utilities.ConnectionFactory;
+import controller.ProjectController;
+import model.Project;
 
 /**
  *
@@ -15,11 +15,15 @@ public class Main {
     
     public static void main(String[] args) {
         
-        Connection c = ConnectionFactory.getConnection();
+        ProjectController projectController = new ProjectController();
         
+        Project project = new Project();
+        project.setName("Test Project");
+        project.setDescription("Created for testing purposes only.");
+        projectController.save(project);
         
-        
-        ConnectionFactory.closeConnection(c);
+        project.setName("Updt: Created for testing purposes only.");
+        projectController.update(project);
         
     }
     

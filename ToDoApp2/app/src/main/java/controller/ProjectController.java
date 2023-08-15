@@ -18,7 +18,7 @@ import utilities.ConnectionFactory;
  * @author Natalia
  */
 public class ProjectController {
-    
+         
     public void save (Project project ){
         String sql = "INSERT INTO projects (name, description, createdAt, updatedAt ) VALUES (?, ?, ?, ?)";
         
@@ -33,8 +33,8 @@ public class ProjectController {
             //Setando valores do statement
             statement.setString(1, project.getName());
             statement.setString(2, project.getDescription());
-            statement.setDate(3, new Date(project.getCreatedAt().getTime()));
-            statement.setDate(4, new Date(project.getUpdatedAt().getTime()));
+            statement.setDate(3, new java.sql.Date(project.getCreatedAt().getTime()));
+            statement.setDate(4, new java.sql.Date(project.getUpdatedAt().getTime()));
            
             //Executando query
             statement.execute();
@@ -59,8 +59,8 @@ public class ProjectController {
             
             statement.setString(1, project.getName());
             statement.setString(2, project.getDescription());
-            statement.setDate(3, new Date(project.getCreatedAt().getTime()));
-            statement.setDate(4, new Date(project.getUpdatedAt().getTime()));
+            statement.setDate(3, new java.sql.Date(project.getCreatedAt().getTime()));
+            statement.setDate(4, new java.sql.Date(project.getUpdatedAt().getTime()));
             statement.setInt(5, project.getId());
             
             statement.execute();
