@@ -36,8 +36,10 @@ public class Task {
     
     public Task(){
         this.createdAt = new Date(); //quando criar o objeto, a data de criação será gerada
+        this.deadline = new Date();
+        this.updatedAt = new Date();
     }
-
+    
     public int getId() {
         return id;
     }

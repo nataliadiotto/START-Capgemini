@@ -5,8 +5,10 @@
 package ToDoApp2;
 
 import controller.ProjectController;
+import controller.TaskController;
 import java.util.List;
 import model.Project;
+import model.Task;
 import org.checkerframework.checker.units.qual.A;
 
 /**
@@ -25,7 +27,7 @@ public class Main {
         project.setDescription("Created for testing purposes only.");
         projectController.save(project);*/
         
-        ProjectController projectController = new ProjectController();
+        /*ProjectController projectController = new ProjectController();
         
         Project project = new Project();
         project.setId(1);
@@ -37,7 +39,20 @@ public class Main {
         
         
         List<Project> projects = projectController.getAll(0);
-        System.out.println("Total: " + projects.size());
+        System.out.println("Total: " + projects.size());*/
+        
+        TaskController taskController = new TaskController();
+        
+        Task task = new Task();
+        task.setProjectId(1);
+        task.setName("Test Task");
+        task.setDescription("For testing purposes only.");
+        task.setNotes("For testing purposes only.");
+        task.setIsComplete(false);
+        taskController.save(task);
+        
+       
+        
         
         
         
