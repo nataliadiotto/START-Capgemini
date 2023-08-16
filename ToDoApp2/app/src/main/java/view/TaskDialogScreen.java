@@ -45,6 +45,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanelTaskHeader.setBackground(new java.awt.Color(0, 153, 102));
+        jPanelTaskHeader.setSize(new java.awt.Dimension(100, 49));
 
         jLabelTaskHeaderTitle.setFont(new java.awt.Font("Gotham Bold", 0, 18)); // NOI18N
         jLabelTaskHeaderTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -61,7 +62,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
             .addGroup(jPanelTaskHeaderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelTaskHeaderTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
                 .addComponent(jLabelTaskHeaderSave)
                 .addContainerGap())
         );
@@ -70,7 +71,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
             .addGroup(jPanelTaskHeaderLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabelTaskHeaderTitle)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
             .addGroup(jPanelTaskHeaderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelTaskHeaderSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -135,7 +136,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
                         .addGap(158, 158, 158))
                     .addComponent(jTextFieldTaskNameBody)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTaskBodyLayout.createSequentialGroup()
-                        .addComponent(jLableTaskDescriptionTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                        .addComponent(jLableTaskDescriptionTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                         .addGap(69, 69, 69))
                     .addComponent(jTextFieldTaskDeadlineBody)
                     .addComponent(jScrollPaneTaskNotes)
@@ -160,7 +161,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabelTaskNotesTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneTaskNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                .addComponent(jScrollPaneTaskNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
