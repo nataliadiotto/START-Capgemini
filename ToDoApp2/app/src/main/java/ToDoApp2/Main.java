@@ -43,14 +43,29 @@ public class Main {
         
         TaskController taskController = new TaskController();
         
-        Task task = new Task();
-        task.setProjectId(1);
+       Task task = new Task();
+        /* task.setProjectId(1);
         task.setName("Test Task");
         task.setDescription("For testing purposes only.");
         task.setNotes("For testing purposes only.");
         task.setIsComplete(false);
-        taskController.save(task);
+        taskController.save(task);*/
+       
+       task.setProjectId(1);
+       task.setId(3);
+       task.setIsComplete(true);
+       task.setNotes("Updated");
+       task.setDescription("Updt: for testing purposes only.");
+       task.setName("Updated: Test Task");
+       taskController.update(task);
         
+        task.setProjectId(1);
+        task.setName("Test Task 2");
+        task.setDescription("For testing purposes only.");
+        task.setNotes("For testing purposes only.");
+        task.setIsComplete(false);
+        taskController.save(task);
+       
        
         
         
