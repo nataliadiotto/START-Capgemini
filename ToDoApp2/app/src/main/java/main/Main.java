@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ToDoApp2;
+package main;
 
 import controller.ProjectController;
 import controller.TaskController;
+import java.util.ArrayList;
 import java.util.List;
 import model.Project;
 import model.Task;
@@ -59,12 +60,19 @@ public class Main {
        task.setName("Updated: Test Task");
        taskController.update(task);
         
-        task.setProjectId(1);
+        /*task.setProjectId(1);
         task.setName("Test Task 2");
         task.setDescription("For testing purposes only.");
         task.setNotes("For testing purposes only.");
         task.setIsComplete(false);
-        taskController.save(task);
+        taskController.save(task);*/
+        
+     
+        List<Task> tasks = taskController.getAll(1);
+        System.out.println("Total: " + tasks.size());
+        
+        task.setProjectId(1);
+        taskController.removeById(4);
        
        
         
