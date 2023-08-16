@@ -117,14 +117,13 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelProjectsLayout.setVerticalGroup(
             jPanelProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProjectsLayout.createSequentialGroup()
-                .addGroup(jPanelProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelProjectsLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabelProjectsTitle))
-                    .addGroup(jPanelProjectsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelProjectsAdd)))
+                .addGap(15, 15, 15)
+                .addComponent(jLabelProjectsTitle)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProjectsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelProjectsAdd)
+                .addContainerGap())
         );
 
         jPanelTasks.setBackground(new java.awt.Color(255, 255, 255));
