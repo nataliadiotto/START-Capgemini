@@ -171,7 +171,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         
         JOptionPane.showMessageDialog(rootPane, "Success saving project!"); //mensagem ao salvar
         
-        this.dispose(); //fechar a janela ao salvar
+        this.dispose(); //fechar a janela ao salvar projeto
         
     }//GEN-LAST:event_jLabelToolBarSaveMouseClicked
 
