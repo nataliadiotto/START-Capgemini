@@ -186,6 +186,11 @@ public class MainScreen extends javax.swing.JFrame {
         jLabelTasksAdd.setFont(new java.awt.Font("Gotham Medium", 1, 14)); // NOI18N
         jLabelTasksAdd.setForeground(new java.awt.Color(0, 153, 102));
         jLabelTasksAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        jLabelTasksAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTasksAddMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelTasksLayout = new javax.swing.GroupLayout(jPanelTasks);
         jPanelTasks.setLayout(jPanelTasksLayout);
@@ -334,6 +339,14 @@ public class MainScreen extends javax.swing.JFrame {
         ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled); //criando nova janela
         projectDialogScreen.setVisible(true); //tornar janela visivel pro user
     }//GEN-LAST:event_jLabelProjectsAddMouseClicked
+
+    private void jLabelTasksAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTasksAddMouseClicked
+        // TODO add your handling code here:
+        TaskDialogScreen taskDialogScreen = new TaskDialogScreen(this, rootPaneCheckingEnabled); //criar nova tela de tasks
+        //taskDialogScreen.setProject(null); //setar o projeto
+        
+        taskDialogScreen.setVisible(true); //mostrar tela pro usuario
+    }//GEN-LAST:event_jLabelTasksAddMouseClicked
 
     /**
      * @param args the command line arguments
