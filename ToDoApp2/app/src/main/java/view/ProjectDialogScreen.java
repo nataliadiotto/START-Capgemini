@@ -164,15 +164,17 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
     private void jLabelToolBarSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelToolBarSaveMouseClicked
         // TODO add your handling code here:
         
-        Project project = new Project();
-        project.setName(jTextFieldName.getText()); //pegar texto de dentro do componente
-        project.setDescription(jTextAreaDescription.getText());
-        controller.save(project);
-        
-        JOptionPane.showMessageDialog(rootPane, "Success saving project!"); //mensagem ao salvar
-        
+        try {
+             Project project = new Project(); //criar objeto pois é o objeto que será salvo no BD
+            project.setName(jTextFieldName.getText()); //pegar texto de dentro do componente
+            project.setDescription(jTextAreaDescription.getText());
+            controller.save(project);
+
+            JOptionPane.showMessageDialog(rootPane, "Success saving project!"); //mensagem ao salvar        
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage()); //disparar mensagem em caso de erro
+        }
         this.dispose(); //fechar a janela ao salvar projeto
-        
     }//GEN-LAST:event_jLabelToolBarSaveMouseClicked
 
     /**
@@ -186,7 +188,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Java swing".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
