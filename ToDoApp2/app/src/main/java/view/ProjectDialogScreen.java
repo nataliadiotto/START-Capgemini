@@ -4,12 +4,15 @@
  */
 package view;
 
+import controller.ProjectController;
+
 /**
  *
  * @author Natalia
  */
 public class ProjectDialogScreen extends javax.swing.JDialog {
 
+    ProjectController controller; //um controlador para toda a nossa tela
     /**
      * Creates new form ProjectDialogScreen
      */
