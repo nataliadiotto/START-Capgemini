@@ -4,8 +4,12 @@
  */
 package view;
 
+import controller.ProjectController;
+import controller.TaskController;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.DefaultListModel;
+import model.Project;
 
 /**
  *
@@ -13,12 +17,19 @@ import java.awt.Font;
  */
 public class MainScreen extends javax.swing.JFrame {
 
+    ProjectController projectController;
+    TaskController taskController;
+    
+    DefaultListModel<Project> projectModel;
+    
+    
     /**
      * Creates new form MainScreen
      */
     public MainScreen() {
         initComponents();
         decorateTasksTable();
+        initDataController(); 
     }
 
     /**
@@ -415,6 +426,17 @@ public class MainScreen extends javax.swing.JFrame {
         
         //Criando ordenador automático das colunas da tabela (ordem alfabética)
         jTableTasks.setAutoCreateRowSorter(true);
+        
+    }
+    
+    public void initDataController() {
+        projectController = new ProjectController();
+        taskController = new TaskController();
+        
+    }
+    
+    public void loadProjects(){ //carregar informações do BD e guardar no project model
+        
         
     }
 }
