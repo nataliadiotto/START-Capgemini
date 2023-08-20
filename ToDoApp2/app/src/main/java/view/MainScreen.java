@@ -13,6 +13,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
+import util.TaskTableModel;
 
 /**
  *
@@ -23,7 +24,8 @@ public class MainScreen extends javax.swing.JFrame {
     ProjectController projectController;
     TaskController taskController;
     
-    DefaultListModel projectModel; //objeto para selecionar o que será mostrado na list
+    DefaultListModel projectsModel; //objeto para selecionar o que será mostrado na list
+    TaskTableModel taskModel; //modelo criado na TaskTableModel class
     
     
     /**
@@ -444,22 +446,25 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     public void initComponentsModel() {
-        projectModel = new DefaultListModel<>(); //iniciando project model
+        projectsModel = new DefaultListModel<>(); //iniciando project model
         loadProjects(); //carregar os projetos do BD para que possam ser exibidos
+        
+        taskModel = new TaskTableModel();
+        jTableTasks.setModel(taskModel); //instruir o jTable a usar o modelo criado, ao invés do padrão
     }
     
     public void loadProjects(){ //carregar informações do BD e guardar no project model
         List<Project> projects = projectController.getAll(WIDTH); //lista de projetos
         
-        projectModel.clear(); //limpar estrutura que guarda os projetos
+        projectsModel.clear(); //limpar estrutura que guarda os projetos
         
         for (int i = 0; i < projects.size(); i++) { //add dentro do objeto todos os projetos que carreguei do BD
            Project project = projects.get(i); 
             Object element;
-           projectModel.addElement(project);
+           projectsModel.addElement(project);
         }
         
-        jListProjects.setModel(projectModel); //vincular nosso model com a jList implementada na GUI
+        jListProjects.setModel(projectsModel); //vincular nosso model com a jList implementada na GUI
         
     }
 }
