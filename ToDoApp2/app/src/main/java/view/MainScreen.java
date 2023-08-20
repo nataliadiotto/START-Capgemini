@@ -8,6 +8,8 @@ import controller.ProjectController;
 import controller.TaskController;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
@@ -346,6 +348,15 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled); //criando nova janela
         projectDialogScreen.setVisible(true); //tornar janela visivel pro user
+        
+        /*pegar janela criada e colocar um objeto ouvinte nela: avisa quando essa janela de cadastro for fechada (quando acontecer um evento de fechamento de janela, 
+        o evento é disparado e o app deve executar o carregamento de projetos*/
+        projectDialogScreen.addWindowListener(new WindowAdapter()  {
+        
+                public void windowClosed(WindowEvent e) {
+                loadProjects();
+                 }
+    });
     }//GEN-LAST:event_jLabelProjectsAddMouseClicked
 
     private void jLabelTasksAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTasksAddMouseClicked
