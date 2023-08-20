@@ -442,9 +442,10 @@ public class MainScreen extends javax.swing.JFrame {
         
         projectModel.clear(); //limpar estrutura que guarda os projetos
         
-        for (int i = 0; i < projects.size() - 1; i++) { //add dentro do objeto todos os projetos que carreguei do BD
+        for (int i = 0; i < projects.size(); i++) { //add dentro do objeto todos os projetos que carreguei do BD
            Project project = projects.get(i); 
-           projectModel.addElement(element);
+            Object element;
+           projectModel.addElement(project);
         }
         
         jListProjects.setModel(projectModel); //vincular nosso model com a jList implementada na GUI
