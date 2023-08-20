@@ -8,6 +8,7 @@ import controller.ProjectController;
 import controller.TaskController;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
 
@@ -20,16 +21,17 @@ public class MainScreen extends javax.swing.JFrame {
     ProjectController projectController;
     TaskController taskController;
     
-    DefaultListModel<Project> projectModel;
+    DefaultListModel<Project> projectModel; //objeto para selecionar o que será mostrado na list
     
     
     /**
      * Creates new form MainScreen
      */
-    public MainScreen() {
+    public MainScreen() { //quando a tela for criada, também já serão criados:
         initComponents();
         decorateTasksTable();
         initDataController(); 
+        initComponentsModel();
     }
 
     /**
@@ -171,7 +173,7 @@ public class MainScreen extends javax.swing.JFrame {
             jPanelProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProjectsLayout.createSequentialGroup()
                 .addComponent(jLabelProjectsTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelProjectsAdd)
                 .addContainerGap())
         );
@@ -233,11 +235,6 @@ public class MainScreen extends javax.swing.JFrame {
         jListProjects.setBorder(null);
         jListProjects.setFont(new java.awt.Font("Gotham Medium", 1, 18)); // NOI18N
         jListProjects.setForeground(new java.awt.Color(51, 51, 51));
-        jListProjects.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jListProjects.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListProjects.setFixedCellHeight(50);
         jListProjects.setSelectionBackground(new java.awt.Color(0, 153, 102));
@@ -304,7 +301,7 @@ public class MainScreen extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPaneTasks, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+            .addComponent(jScrollPaneTasks, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,8 +432,22 @@ public class MainScreen extends javax.swing.JFrame {
         
     }
     
+    public void initComponentsModel() {
+        projectModel = new DefaultListModel<Project>(); //iniciando project model
+        loadProjects(); //carregar os projetos do BD para que possam ser exibidos
+    }
+    
     public void loadProjects(){ //carregar informações do BD e guardar no project model
+        List<Project> projects = projectController.getAll(WIDTH); //lista de projetos
         
+        projectModel.clear(); //limpar estrutura que guarda os projetos
+        
+        for (int i = 0; i < projects.size() - 1; i++) { //add dentro do objeto todos os projetos que carreguei do BD
+           Project project = projects.get(i); 
+           projectModel.addElement(element);
+        }
+        
+        jListProjects.setModel(projectModel); //vincular nosso model com a jList implementada na GUI
         
     }
 }
