@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Project;
-import utilities.ConnectionFactory;
+import util.ConnectionFactory;
 
 /**
  *
