@@ -21,7 +21,7 @@ public class MainScreen extends javax.swing.JFrame {
     ProjectController projectController;
     TaskController taskController;
     
-    DefaultListModel<Project> projectModel; //objeto para selecionar o que será mostrado na list
+    DefaultListModel projectModel; //objeto para selecionar o que será mostrado na list
     
     
     /**
@@ -433,7 +433,7 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     public void initComponentsModel() {
-        projectModel = new DefaultListModel<Project>(); //iniciando project model
+        projectModel = new DefaultListModel<>(); //iniciando project model
         loadProjects(); //carregar os projetos do BD para que possam ser exibidos
     }
     
