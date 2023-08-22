@@ -13,6 +13,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
+import model.Task;
 import util.TaskTableModel;
 
 /**
@@ -298,6 +299,7 @@ public class MainScreen extends javax.swing.JFrame {
         jTableTasks.setSelectionBackground(new java.awt.Color(189, 255, 189));
         jTableTasks.setSelectionForeground(new java.awt.Color(204, 204, 204));
         jTableTasks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableTasks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableTasks.setShowGrid(false);
         jScrollPaneTasks.setViewportView(jTableTasks);
 
@@ -450,7 +452,15 @@ public class MainScreen extends javax.swing.JFrame {
         loadProjects(); //carregar os projetos do BD para que possam ser exibidos
         
         taskModel = new TaskTableModel();
-        jTableTasks.setModel(taskModel); //instruir o jTable a usar o modelo criado, ao invés do padrão
+        jTableTasks.setModel(taskModel); //setar o jTable para usar o modelo criado, ao invés do padrão
+        loadTasks(5); //carregar tasks
+    }
+    
+    //carregar lista de tasks de um projeto específico e setar as tarefas pra dentro do task table model
+    public void loadTasks(int projectId) {
+        List<Task> tasks = taskController.getAll(projectId);
+        taskModel.setTasks(tasks);
+        
     }
     
     public void loadProjects(){ //carregar informações do BD e guardar no project model
