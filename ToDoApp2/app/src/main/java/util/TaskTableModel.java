@@ -37,6 +37,17 @@ public class TaskTableModel extends AbstractTableModel{
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return columnIndex == 3; //equivalente a uma comparação if/else
     }
+    
+    @Override
+    public Class<?> getColumnClass(int columnIndex) { //retorna a classe do componente que esta na coluna: se é texto, String, boolean, etc
+    
+            if (tasks.isEmpty()) {
+                return Object.class;
+            }
+    
+            return this.getValueAt(0, columnIndex).getClass(); //vai procurar algum dado na coluna
+    
+    }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
