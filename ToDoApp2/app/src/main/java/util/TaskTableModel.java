@@ -78,6 +78,12 @@ public class TaskTableModel extends AbstractTableModel{
         }
  
     }
+    
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) { //a GUI transforma em object, e converto de volta pra boolean
+        tasks.get(rowIndex).setIsComplete((boolean) aValue);
+    }
+    
 
     public String[] getColumns() {
         return columns;
