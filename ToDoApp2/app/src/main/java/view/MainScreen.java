@@ -301,6 +301,11 @@ public class MainScreen extends javax.swing.JFrame {
         jTableTasks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableTasks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableTasks.setShowGrid(false);
+        jTableTasks.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableTasksMouseClicked(evt);
+            }
+        });
         jScrollPaneTasks.setViewportView(jTableTasks);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -370,6 +375,26 @@ public class MainScreen extends javax.swing.JFrame {
         
         taskDialogScreen.setVisible(true); //mostrar tela pro usuario
     }//GEN-LAST:event_jLabelTasksAddMouseClicked
+
+    private void jTableTasksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTasksMouseClicked
+        // TODO add your handling code here:
+        int rowIndex = jTableTasks.rowAtPoint(evt.getPoint()); //me diz qual é a linha com base num ponto da tela (evt.getPoint = onde ocorreu o clique)
+        int columnIndex = jTableTasks.columnAtPoint(evt.getPoint());
+        
+        switch (columnIndex) {
+            case 3:
+                Task task = taskModel.getTasks().get(rowIndex);
+                taskController.save(task);
+            break;
+            case 4:
+            break;
+            case 5:
+            break;
+            
+            default:
+                throw new AssertionError();
+        }
+    }//GEN-LAST:event_jTableTasksMouseClicked
 
     /**
      * @param args the command line arguments
