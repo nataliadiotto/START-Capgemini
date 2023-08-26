@@ -243,6 +243,11 @@ public class MainScreen extends javax.swing.JFrame {
         jListProjects.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListProjects.setFixedCellHeight(50);
         jListProjects.setSelectionBackground(new java.awt.Color(0, 153, 102));
+        jListProjects.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListProjectsMouseClicked(evt);
+            }
+        });
         jScrollPanelProjects.setViewportView(jListProjects);
 
         javax.swing.GroupLayout jPanelProjectsListLayout = new javax.swing.GroupLayout(jPanelProjectsList);
@@ -383,7 +388,7 @@ public class MainScreen extends javax.swing.JFrame {
         
         switch (columnIndex) {
             case 3:
-                Task task = taskModel.getTasks().get(rowIndex);
+                Task task = taskModel.getTasks().get(rowIndex); //quando acontecer na coluna 3, pegamos a linha em que ocorreu o evento mouseclicked e salvamos no BD usando o update
                 taskController.update(task);
                 break;
             case 4:
@@ -395,6 +400,14 @@ public class MainScreen extends javax.swing.JFrame {
                 throw new AssertionError();
         }
     }//GEN-LAST:event_jTableTasksMouseClicked
+
+    private void jListProjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListProjectsMouseClicked
+        // TODO add your handling code here:
+        
+        int projectIndex  = jListProjects.getSelectedIndex(); //retorna o index do item clicado
+        Project project = (Project) projectsModel.get(projectIndex); //selecionar o project dentro de projectsModel correspondente ao index //cast pois retorna um object e precisamos de um project
+        loadTasks(project.getId());
+    }//GEN-LAST:event_jListProjectsMouseClicked
 
     /**
      * @param args the command line arguments
