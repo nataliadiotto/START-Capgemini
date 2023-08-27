@@ -111,8 +111,8 @@ public class MainScreen extends javax.swing.JFrame {
         });
         jTableTasks.setGridColor(new java.awt.Color(255, 255, 255));
         jTableTasks.setRowHeight(50);
-        jTableTasks.setSelectionBackground(new java.awt.Color(189, 255, 189));
-        jTableTasks.setSelectionForeground(new java.awt.Color(204, 204, 204));
+        jTableTasks.setSelectionBackground(new java.awt.Color(204, 255, 204));
+        jTableTasks.setSelectionForeground(new java.awt.Color(102, 102, 102));
         jTableTasks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableTasks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableTasks.setShowGrid(false);
@@ -390,6 +390,15 @@ public class MainScreen extends javax.swing.JFrame {
         
         
         taskDialogScreen.setVisible(true); //mostrar tela pro usuario
+        
+        taskDialogScreen.addWindowListener(new WindowAdapter() {
+          public void windowClosed (WindowEvent e) {
+              
+              int projectIndex = jListProjects.getSelectedIndex();
+              Project project = (Project) projectsModel.get(projectIndex);
+              loadTasks(project.getId());
+          }  
+        });
     }//GEN-LAST:event_jLabelTasksAddMouseClicked
 
     private void jTableTasksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTasksMouseClicked
