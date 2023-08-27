@@ -492,12 +492,18 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     public void initComponentsModel() {
-        projectsModel = new DefaultListModel<>(); //iniciando project model
+        projectsModel = new DefaultListModel<>(); //iniciando project model 
         loadProjects(); //carregar os projetos do BD para que possam ser exibidos
-        
+                
         taskModel = new TaskTableModel();
         jTableTasks.setModel(taskModel); //setar o jTable para usar o modelo criado, ao invés do padrão
         loadTasks(5); //carregar tasks
+        
+        if (!projectsModel.isEmpty()) { //forçar a seleção do primeiro item da lista se houverem projetos na lista
+            jListProjects.getSelectedIndex();
+            Project project = (Project) projectsModel.get(0);
+            loadTasks(project.getId());
+        }
     }
     
     //carregar lista de tasks de um projeto específico e setar as tarefas pra dentro do task table model
