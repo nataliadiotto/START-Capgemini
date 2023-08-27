@@ -384,6 +384,11 @@ public class MainScreen extends javax.swing.JFrame {
         TaskDialogScreen taskDialogScreen = new TaskDialogScreen(this, rootPaneCheckingEnabled); //criar nova tela de tasks
         //taskDialogScreen.setProject(null); //setar o projeto
         
+        int projectIndex = jListProjects.getSelectedIndex(); //retornar o indice do item selecionado
+        Project project = (Project) projectsModel.get(projectIndex);
+        taskDialogScreen.setProject(project);
+        
+        
         taskDialogScreen.setVisible(true); //mostrar tela pro usuario
     }//GEN-LAST:event_jLabelTasksAddMouseClicked
 
@@ -500,7 +505,7 @@ public class MainScreen extends javax.swing.JFrame {
         loadTasks(5); //carregar tasks
         
         if (!projectsModel.isEmpty()) { //forçar a seleção do primeiro item da lista se houverem projetos na lista
-            jListProjects.getSelectedIndex();
+            jListProjects.setSelectedIndex(0);
             Project project = (Project) projectsModel.get(0);
             loadTasks(project.getId());
         }
