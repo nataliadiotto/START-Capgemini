@@ -16,13 +16,13 @@ import model.Task;
  *
  * @author Natalia
  */
-public class DeadlineColumnCellRenderer extends DefaultTableCellRenderer {
+public class DeadlineColumnCellRenderer extends DefaultTableCellRenderer{
     
     @Override
-    public Component getTableCellRenComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         
         JLabel label;
-        label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col); //retornar o componente que será renderizado na tela
+        label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column); //retornar o componente que será renderizado na tela
         
         label.setHorizontalAlignment(CENTER);
         
@@ -30,9 +30,9 @@ public class DeadlineColumnCellRenderer extends DefaultTableCellRenderer {
         Task task = taskModel.getTasks().get(row);
         
         if (task.getDeadline().after(new Date())) {
-            label.setBackground(Color.green);
+            label.setBackground(Color.GREEN);
         } else {
-            label.setBackground(Color.red);
+            label.setBackground(Color.RED);
         }      
         return label;
     }

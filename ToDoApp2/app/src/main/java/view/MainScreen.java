@@ -12,7 +12,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.JTable;
 import model.Project;
 import model.Task;
 import util.DeadlineColumnCellRenderer;
@@ -36,9 +35,11 @@ public class MainScreen extends javax.swing.JFrame {
      */
     public MainScreen() { //quando a tela for criada, também já serão criados:
         initComponents();
-        decorateTasksTable();
+        
         initDataController(); 
         initComponentsModel();
+        
+         decorateTasksTable();
     }
 
     /**
