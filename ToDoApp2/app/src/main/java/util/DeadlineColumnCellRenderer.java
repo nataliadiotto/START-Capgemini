@@ -33,8 +33,7 @@ public class DeadlineColumnCellRenderer extends DefaultTableCellRenderer {
             label.setBackground(Color.green);
         } else {
             label.setBackground(Color.red);
-        }
-                
+        }      
         return label;
     }
     

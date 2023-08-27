@@ -12,8 +12,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JTable;
 import model.Project;
 import model.Task;
+import util.DeadlineColumnCellRenderer;
 import util.TaskTableModel;
 
 /**
@@ -491,6 +493,8 @@ public class MainScreen extends javax.swing.JFrame {
         //Criando ordenador automático das colunas da tabela (ordem alfabética)
         jTableTasks.setAutoCreateRowSorter(true);
         
+        //setando o cellrenderer que implementei
+        jTableTasks.getColumnModel().getColumn(2).setCellRenderer(new DeadlineColumnCellRenderer());
     }
     
     public void initDataController() {
