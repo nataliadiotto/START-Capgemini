@@ -174,7 +174,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
                 this.dispose(); //fechar a janela ao salvar o projeto
                 JOptionPane.showMessageDialog(rootPane, "Success saving project!"); //mensagem ao salvar  
             } else {
-                 JOptionPane.showMessageDialog(rootPane, "Invalid name! Project not saved.");
+                 JOptionPane.showMessageDialog(rootPane, "Unsuccessful saving. Empty name!");
              }
       
         } catch (Exception e) {
