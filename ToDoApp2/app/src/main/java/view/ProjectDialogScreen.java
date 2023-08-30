@@ -164,13 +164,19 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
     private void jLabelToolBarSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelToolBarSaveMouseClicked
         // TODO add your handling code here:
         
+        //validação do campo "nome" que não pode ser vazio
         try {
-             Project project = new Project(); //criar objeto pois é o objeto que será salvo no BD
-            project.setName(jTextFieldName.getText()); //pegar texto de dentro do componente
-            project.setDescription(jTextAreaDescription.getText());
-            controller.save(project);
+             if (!jTextFieldName.getText().equals("")) {
+                Project project = new Project(); //criar objeto pois é o objeto que será salvo no BD
+                project.setName(jTextFieldName.getText()); //pegar texto de dentro do componente
+                project.setDescription(jTextAreaDescription.getText());
+                controller.save(project);
 
-            JOptionPane.showMessageDialog(rootPane, "Success saving project!"); //mensagem ao salvar        
+                JOptionPane.showMessageDialog(rootPane, "Success saving project!"); //mensagem ao salvar  
+            } else {
+                 JOptionPane.showMessageDialog(rootPane, "Invalid name! Project not saved.");
+             }
+      
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage()); //disparar mensagem em caso de erro
         }
