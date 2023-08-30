@@ -166,7 +166,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         
         //validação do campo "nome" que não pode ser vazio
         try {
-             if (!jTextFieldName.getText().equals("")) {
+             if (!jTextFieldName.getText().isEmpty()) {
                 Project project = new Project(); //criar objeto pois é o objeto que será salvo no BD
                 project.setName(jTextFieldName.getText()); //pegar texto de dentro do componente
                 project.setDescription(jTextAreaDescription.getText());

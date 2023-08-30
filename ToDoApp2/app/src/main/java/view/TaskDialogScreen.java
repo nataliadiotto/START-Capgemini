@@ -214,28 +214,34 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     private void jLabelTaskHeaderSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTaskHeaderSaveMouseClicked
         // TODO add your handling code here:
         try {
-            Task task = new Task();
+            if (!jTextFieldTaskNameBody.getText().isEmpty() && !jFormattedTextFieldDeadline.getText().isEmpty()) {
+                Task task = new Task();
             
-            task.setProjectId(project.getId()); //setando o id do projeto a qual ela pertence
-            
-            task.setName(jTextFieldTaskNameBody.getText());
-            task.setDescription(jTextAreaTaskDescriptionBody.getText());
-            task.setNotes(jTextAreaTaskNotesBody.getText());
-            task.setIsComplete(false);
-            
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date deadline = null;
-            
-            deadline = dateFormat.parse(jFormattedTextFieldDeadline.getText());
-            task.setDeadline(deadline);
-                    
-            controller.save(task);
-            
-            JOptionPane.showMessageDialog(rootPane, "Success saving task!");
+                task.setProjectId(project.getId()); //setando o id do projeto a qual ela pertence
+
+                task.setName(jTextFieldTaskNameBody.getText());
+                task.setDescription(jTextAreaTaskDescriptionBody.getText());
+                task.setNotes(jTextAreaTaskNotesBody.getText());
+                task.setIsComplete(false);
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date deadline = null;
+
+                deadline = dateFormat.parse(jFormattedTextFieldDeadline.getText());
+                task.setDeadline(deadline);
+
+                controller.save(task);
+
+                JOptionPane.showMessageDialog(rootPane, "Success saving task!");
+
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Unsuccessful saving. Mandatory fields cannot be empty!");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
-        this.dispose();
+        
     }//GEN-LAST:event_jLabelTaskHeaderSaveMouseClicked
 
     private void jFormattedTextFieldDeadlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDeadlineActionPerformed
