@@ -21,6 +21,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
     public ProjectDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        hideErrorFields();
         
         controller = new ProjectController(); 
     }
@@ -190,7 +191,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         
         //validação do campo "nome" que não pode ser vazio
         try {
-             if (!jTextFieldName.getText().isEmpty()) {
+             if (isFieldValid()) {
                 Project project = new Project(); //criar objeto pois é o objeto que será salvo no BD
                 project.setName(jTextFieldName.getText()); //pegar texto de dentro do componente
                 project.setDescription(jTextAreaDescription.getText());
@@ -198,7 +199,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
                 this.dispose(); //fechar a janela ao salvar o projeto
                 JOptionPane.showMessageDialog(rootPane, "Success saving project!"); //mensagem ao salvar  
             } else {
-                 JOptionPane.showMessageDialog(rootPane, "Unsuccessful saving. Empty name!");
+                jLabelNameError.setVisible(true);
              }
       
         } catch (Exception e) {
@@ -266,4 +267,18 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldName;
     // End of variables declaration//GEN-END:variables
+
+public void hideErrorFields() {
+    jLabelNameError.setVisible(false);
+}
+
+public boolean isFieldValid() {
+    if (!jTextFieldName.getText().isEmpty()) {
+        return true;
+    } else {
+        return false;
+    }
+       
+}
+
 }
