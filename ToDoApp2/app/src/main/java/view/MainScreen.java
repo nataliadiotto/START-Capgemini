@@ -12,6 +12,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import model.Project;
 import model.Task;
 import util.ButtonColumnCellRenderer;
@@ -113,10 +114,12 @@ public class MainScreen extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableTasks.setAlignmentX(2.0F);
+        jTableTasks.setAlignmentY(0.0F);
         jTableTasks.setGridColor(new java.awt.Color(255, 255, 255));
         jTableTasks.setRowHeight(50);
         jTableTasks.setSelectionBackground(new java.awt.Color(204, 255, 204));
-        jTableTasks.setSelectionForeground(new java.awt.Color(102, 102, 102));
+        jTableTasks.setSelectionForeground(new java.awt.Color(51, 51, 51));
         jTableTasks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableTasks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableTasks.setShowGrid(false);
@@ -491,7 +494,10 @@ public class MainScreen extends javax.swing.JFrame {
         jTableTasks.getTableHeader().setFont(new Font("Gotham Rounded", Font.BOLD, 14));
         jTableTasks.getTableHeader().setBackground(new Color(0, 153, 102));
         jTableTasks.getTableHeader().setForeground(new Color(255, 255, 255));
-        
+        DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) jTableTasks.getTableHeader().getDefaultRenderer();
+        renderer.setHorizontalAlignment(0);
+                
+                
         //Criando ordenador automático das colunas da tabela (ordem alfabética)
         jTableTasks.setAutoCreateRowSorter(true);
         

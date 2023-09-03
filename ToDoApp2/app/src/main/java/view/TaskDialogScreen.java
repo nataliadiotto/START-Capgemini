@@ -259,6 +259,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
 
                 this.dispose();
             } else {
+                hideErrorFields();
                 if (jTextFieldTaskNameBody.getText().isEmpty()) {
                     jLabelNameError.setVisible(true);
                 }
