@@ -196,8 +196,9 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
                 project.setName(jTextFieldName.getText()); //pegar texto de dentro do componente
                 project.setDescription(jTextAreaDescription.getText());
                 controller.save(project);
-                this.dispose(); //fechar a janela ao salvar o projeto
-                JOptionPane.showMessageDialog(rootPane, "Success saving project!"); //mensagem ao salvar  
+                
+                JOptionPane.showMessageDialog(rootPane, "Success saving project!"); //mensagem ao salvar 
+                this.dispose(); //fechar a janela ao salvar o projeto 
             } else {
                 jLabelNameError.setVisible(true);
              }

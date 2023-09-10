@@ -366,8 +366,9 @@ public class MainScreen extends javax.swing.JFrame {
         o evento é disparado e o app deve executar o carregamento de projetos*/
         projectDialogScreen.addWindowListener(new WindowAdapter()  {
         
+                @Override
                 public void windowClosed(WindowEvent e) {
-                loadProjects();
+                     loadProjects();
                  }
     });
     }//GEN-LAST:event_jLabelProjectsAddMouseClicked
@@ -382,9 +383,10 @@ public class MainScreen extends javax.swing.JFrame {
         taskDialogScreen.setProject(project);
         
         
-        taskDialogScreen.setVisible(true); //mostrar tela pro usuario
+        taskDialogScreen.setVisible(rootPaneCheckingEnabled); //mostrar tela pro usuario
         
         taskDialogScreen.addWindowListener(new WindowAdapter() {
+          @Override
           public void windowClosed (WindowEvent e) {
               
               int projectIndex = jListProjects.getSelectedIndex();
@@ -406,6 +408,7 @@ public class MainScreen extends javax.swing.JFrame {
                 taskController.update(task);
                 break;
             case 4:
+                
             break;
             case 5:
                 //quando acontecer na coluna 5, pegamos a linha em que ocorreu o evento mouseclicked e removemos do BD e do taskModel usando o taskId
@@ -414,7 +417,7 @@ public class MainScreen extends javax.swing.JFrame {
                 
                 int projectIndex = jListProjects.getSelectedIndex(); //recarregar a lista de tarefas após remoção
                 Project project = (Project) projectsModel.get(projectIndex);
-                loadTasks(projectIndex);
+                loadTasks(project.getId());
             break;
             
             default:
@@ -522,7 +525,7 @@ public class MainScreen extends javax.swing.JFrame {
                 
         taskModel = new TaskTableModel();
         jTableTasks.setModel(taskModel); //setar o jTable para usar o modelo criado, ao invés do padrão
-        loadTasks(5); //carregar tasks
+        //loadTasks(5); //carregar tasks
         
         if (!projectsModel.isEmpty()) { //forçar a seleção do primeiro item da lista se houverem projetos na lista
             jListProjects.setSelectedIndex(0);
@@ -569,7 +572,7 @@ public class MainScreen extends javax.swing.JFrame {
         
         for (int i = 0; i < projects.size(); i++) { //add dentro do objeto todos os projetos que carreguei do BD
            Project project = projects.get(i); 
-            Object element;
+           //Object element;
            projectsModel.addElement(project);
         }
         
